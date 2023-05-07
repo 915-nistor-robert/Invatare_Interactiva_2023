@@ -20,7 +20,7 @@ export default function Login() {
                         {loginText.forgotPassword}
                     </div>
                 </div>
-                <a className={'login-button'} href={'/jobs'} target={''}>Login</a>
+                <a className={'login-button'} href={'/notes'} target={''}>Login</a>
 
                 <div className={'register-text'}>
                     {loginText.register}

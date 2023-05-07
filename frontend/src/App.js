@@ -3,7 +3,7 @@ import './App.scss';
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import JobsPage from "./Components/JobsPage/JobsPage";
+import NotesPage from "./Components/NotesPage/NotesPage";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login/>}/>
-                <Route path="jobs" element={<JobsPage/>}/>
+                <Route path="notes" element={<NotesPage/>}/>
                 <Route path="register" element={<Register/>}/>
             </Routes>
         </BrowserRouter>

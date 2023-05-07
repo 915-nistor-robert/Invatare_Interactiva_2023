@@ -1,10 +1,10 @@
-import './JobsPage.scss'
+import './NotesPage.scss'
 import {useState} from "react";
 import Job from "../Job/Job";
 import {FaFilter} from "react-icons/fa";
 
-export default function JobsPage() {
-    const [jobs, setJobs] = useState([{
+export default function NotesPage() {
+    const [notes, setNotes] = useState([{
         "title": "Crapat lemne",
         "company": "-",
         "location": "Hunedoara,HD",
@@ -33,7 +33,7 @@ export default function JobsPage() {
                 <div className={'jobs-searchbar-container'}>
                     <input type={'text'} name={'search'} className={'jobs-searchbar'} placeholder={'looking for a certain job?'}/>
                 </div>
-                {jobs.map(({title,description,location,company})=>(
+                {notes.map(({title,description,location,company})=>(
                     <Job title={title} description={description} location={location}
                     company={company}/>
                 ))}
