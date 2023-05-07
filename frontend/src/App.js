@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.scss';
 import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import JobsPage from "./Components/JobsPage/JobsPage";
 
@@ -11,8 +12,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login/>}/>
                 <Route path="jobs" element={<JobsPage/>}/>
+                <Route path="register" element={<Register/>}/>
             </Routes>
-        <JobsPage/>
         </BrowserRouter>
     </div>
   );

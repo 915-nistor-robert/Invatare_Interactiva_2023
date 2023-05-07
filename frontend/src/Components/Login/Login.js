@@ -20,12 +20,12 @@ export default function Login() {
                         {loginText.forgotPassword}
                     </div>
                 </div>
-                <a className={'register-button'} href={'/jobs'} target={''}>Login</a>
+                <a className={'login-button'} href={'/jobs'} target={''}>Login</a>
 
                 <div className={'register-text'}>
                     {loginText.register}
                 </div>
-                <a className={'register-button'} href={'/jobs'} target={''}>Register now</a>
+                <a className={'register-button'} href={'/register'} target={''}>Register now</a>
                 <div className={'login-icons'}>
                     <BsFacebook className={'login-icon'}/>
                     <AiFillGoogleCircle className={'login-icon'}/>
