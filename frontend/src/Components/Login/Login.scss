@@ -1,0 +1,111 @@
+@import "src/variables";
+
+.login-main-container{
+  width: 100%;
+  height: 100%;
+  background-color: $yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $blue;
+
+}
+
+.login-title{
+  color: $blue;
+  font-family: Montserrat, sans-serif;
+  width: 300px;
+
+}
+
+.login-title h1{
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 44px;
+  text-align: left;
+  margin: 0;
+}
+
+.login-title p{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  width: 200px;
+}
+
+.login-input-container{
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input{
+  background-color: $light-yellow;
+  border: 4px solid $yellow;
+  border-radius: 28px;
+  width: 243px;
+  height: 42px;
+  text-align: center;
+}
+.login-input::placeholder{
+  color: $blue;
+}
+
+.forgot-password-text{
+  text-align: center;
+  font-size: 12px;
+  width: 159px;
+}
+
+.forgot-password-text a {
+  color: $blue;
+}
+
+.register-text{
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.register-button{
+  width: 251px;
+  height: 62px;
+  background: $light-yellow;
+  border-radius: 28px;
+  line-height: 62px;
+  text-align: center;
+  color: $blue;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.login-icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100px;
+  margin-top: 20px;
+}
+
+.login-icon:nth-child(1){
+  width: 33px;
+  height: 33px;
+}
+
+.login-icon:nth-child(2) {
+  position: relative;
+  top: -2px;
+  width: 38px;
+  height: 38px;
+}

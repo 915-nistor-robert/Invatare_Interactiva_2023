@@ -1,0 +1,27 @@
+@import '../../variables';
+
+
+.jobs-main-container{
+  background-color: $yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.jobs-searchbar{
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 350px;
+  height: 40px;
+  background-color: $light-yellow;
+  border: none;
+  text-align: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 28px;
+}
+
+.jobs-searchbar::placeholder {
+  color: $blue;
+}
