@@ -1,20 +1,24 @@
 @import "../../variables";
 
 .job-main-container{
+  position: relative;
   background-color: $light-yellow;
   color: $blue;
   font-family: Montserrat, sans-serif;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 28px;
-  width: 300px;
-  margin: 8px 0 8px 0;
+  width: calc(50% - 20px);
+  height: 200px;
+  margin: 10px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .job-header{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 8px 10px 8px 10px;
+  margin: 16px 10px 8px 20px;
 }
 
 .job-header .job-title{
@@ -28,8 +32,14 @@
 }
 
 .job-description{
-  margin: -5px 10px -5px 10px;
+  margin: -5px 20px -5px 20px;
   font-size: 18px;
+  height: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Maximum number of lines to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .job-location{
@@ -37,4 +47,16 @@
   margin: 12px;
   position: relative;
   text-align: right;
+}
+
+.buttons-container{
+  position: absolute;
+  bottom: 5px;
+  right: 35px;
+}
+
+.action-buttons-style{
+  background-color: transparent;
+  border: none;
+  color: $blue;
 }

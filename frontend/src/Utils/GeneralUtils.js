@@ -4,3 +4,14 @@ export const loginText = {
     forgotPassword: <p>forgot password? <a href={''}>click here</a> to get a new one</p>,
     register: <p>Not a member yet? No problem!</p>
 }
+
+class StickyNote {
+    constructor(id, title, subject,  description) {
+        this.id = id;
+        this.title = title;
+        this.subject = subject;
+        this.description = description;
+    }
+}
+
+export default StickyNote;
