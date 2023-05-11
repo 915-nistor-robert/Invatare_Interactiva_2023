@@ -1,5 +1,5 @@
 import './NotesPage.scss'
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Job from "../Job/Job";
 import {useNavigate} from "react-router-dom";
 import StickyNote from "../../Utils/GeneralUtils";
@@ -19,43 +19,64 @@ export default function NotesPage() {
         
     ])
 
-    const [search, setSearch] = useState('');
-
-    const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(search.toLowerCase()) 
-    || note.subject.toLowerCase().includes(search.toLowerCase()) || note.description.toLowerCase().includes(search.toLowerCase()));
-
-
-    const handleInputChange = (event) =>{
-        setSearch(event.target.value)
-    }
-
-    return (<>
-            <div className={'jobs-main-container'}>
-                <div className={'jobs-searchbar-container'}>
-                    <button name={'add-note'} className={'jobs-searchbar'} onClick={moveToEditStickyNote}>Add a new note</button>
-                    <input type={'text'}
-                     name={'search'}
-                     className={'jobs-searchbar'}
-                     placeholder={'looking for a certain job?'}
-                     value={search}
-                     onChange={handleInputChange}/>
-                </div>
-                <div className={'sticky-notes-grid-container'}>
-                    {filteredNotes.length > 0 ? (
-                        filteredNotes.map((stickyNote) => (
-                            <Job key={stickyNote.id} note={stickyNote} />
-                        ))
-                    ) : (
-                        <div className="no-results">
-                            No results found
-                        </div>
-                    )}
-                </div>
-            </div>
-        </>
-    )
-
+    const [categories, setCategories] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState([]);
+  
+    useEffect(() => {
+      // get unique categories from notes
+      const uniqueCategories = [...new Set(notes.map((note) => note.subject))];
+      setCategories(uniqueCategories);
+    }, [notes]);
+  
+    const filteredNotes = notes.filter(
+      (note) => selectedCategories.length === 0 || selectedCategories.includes(note.subject)
+    );
+  
+    const handleCategoryClick = (category) => {
+      setSelectedCategories((prevSelectedCategories) =>
+        prevSelectedCategories.includes(category)
+          ? prevSelectedCategories.filter((cat) => cat !== category)
+          : [...prevSelectedCategories, category]
+      );
+    };
+  
+    return (
+      <>
+        <div className={'jobs-main-container'}>
+          <div className={'jobs-searchbar-container'}>
+            <button
+              name={'add-note'}
+              className={'jobs-searchbar'}
+              onClick={moveToEditStickyNote}
+            >
+              Add a new note
+            </button>
+          </div>
+          <div className={'category-container'}>
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                className={`category ${selectedCategories.includes(category) ? 'selected' : ''}`}
+                onClick={() => handleCategoryClick(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <div className={'sticky-notes-grid-container'}>
+            {filteredNotes.length > 0 ? (
+              filteredNotes.map((stickyNote) => (
+                <Job key={stickyNote.id} note={stickyNote} />
+              ))
+            ) : (
+              <div className='no-results'>No results found</div>
+            )}
+          </div>
+        </div>
+      </>
+    );
+  
     function moveToEditStickyNote() {
-        navigate(`/sticky-notes`)
+      navigate(`/sticky-notes`);
     }
-}
+  }
