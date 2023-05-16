@@ -79,4 +79,6 @@ export default function NotesPage() {
     function moveToEditStickyNote() {
       navigate(`/sticky-notes`);
     }
+
+
   }

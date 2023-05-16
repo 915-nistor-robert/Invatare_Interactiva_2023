@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import './AddEditStickyNote.scss';
+import {basePath} from "../../Utils/GeneralUtils";
 
 export default function AddEditStickyNote() {
     const location = useLocation();
@@ -10,25 +11,52 @@ export default function AddEditStickyNote() {
 
     const [formData, setFormData] = useState({
         title: stickyNote ? stickyNote.title : '',
-        subject: stickyNote ? stickyNote.subject : '',
+        category: stickyNote ? stickyNote.category : '',
         description: stickyNote ? stickyNote.description : '',
     });
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         setFormData((prevFormData) => ({
             ...prevFormData,
             [name]: value
         }));
     };
 
-    const handleSubmit = (event) => {
+    const checkEmptyFields = () => {
+        if (formData.title === "" || formData.category === "" || formData.description === "") {
+            alert("Please fill in all the fields!")
+            return false
+        }
+        return true
+    }
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // Handle form submission (add/edit logic)
         // ...
+
         console.log(formData);
-        // After successfully adding/editing the sticky note, navigate back to the main page
-        navigate('/notes'); // Replace '/' with the appropriate route for the main page
+        if (checkEmptyFields()) {
+            const loggedUser = sessionStorage.getItem('username');
+            const response = await fetch(basePath + `/userByUsername?username=${loggedUser}`, {
+                        headers: {
+                            Accept: 'application/json',
+                        },
+                    });
+
+            fetch(basePath + '/api/sticky-notes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+            }).then(response => {
+                console.log(response)
+            })
+            // After successfully adding/editing the sticky note, navigate back to the main page
+            // navigate('/notes'); // Replace '/' with the appropriate route for the main page
+        }
     };
 
     return (
@@ -40,12 +68,13 @@ export default function AddEditStickyNote() {
                     <div className={"row"}>
                         <input placeholder={"Title"} type={"text"} className={'input-title'} value={(formData.title)}
                                name={"title"} onChange={handleChange}/>
-                        <input placeholder={"Subject"} type={"text"} className={'input-title'} value={(formData.subject)}
-                               name={"subject"} onChange={handleChange}/>
+                        <input placeholder={"Subject"} type={"text"} className={'input-title'}
+                               value={(formData.category)}
+                               name={"category"} onChange={handleChange}/>
                     </div>
 
                     <textarea className={'input-description'} value={(formData.description)} onChange={handleChange}
-                        name={"description"}/>
+                              name={"description"}/>
                     <button className={'button-style'} type="submit">{isEditing ? 'Update' : 'Add'}</button>
 
                 </form>
